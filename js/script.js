@@ -40,13 +40,15 @@ $(function () {
 	/* inizializzazione */
 
 	$('.selection, .score').hide();
+	$('.resultText').hide();
+
 
 
 
 	/* tasti play e reset */
 
 	$('#play, #reset').click(function () {
-		$('.selection, .score').toggle();
+		$('.selection, .score, .resultText').toggle();
 		$('#play, #reset').toggle();
 		$('.video').show();
 	})
@@ -60,8 +62,12 @@ $(function () {
 
 	$('#reset').click(() => {
 		$('.score span').text(0);
-		$('h1').text('Carta Sasso Forbici Lizard e Spock');
+		$('h1').text('Carta Forbici Sasso Lizard e Spock');
 		$('.user-choice img, .cpu-choice img').fadeOut(0);
+
+		userCount = 0;
+		cpuCount = 0;
+
 		$('.choice').addClass('absolutePos');
 
 
