@@ -161,13 +161,13 @@ button#reset:hover {
 .selection button:hover {
 	opacity: 1;
 	letter-spacing: .2em;
+	transform: scale(1.1);
 
-	/* transform: scale(1.2); */
 	/* transition: .2s ease-in; */
 }
 
 .selection button:active {
-	transform: scale(.9);
+	transform: scale(1);
 
 }
 
