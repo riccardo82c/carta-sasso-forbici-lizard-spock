@@ -76,8 +76,6 @@ $(function () {
 
 
 	$('.selection button img').click(function () {
-
-
 		$('.cpu-choice img').fadeOut(0);
 
 		let userImg = $(this).attr('src');
@@ -101,8 +99,6 @@ $(function () {
 			}
 
 		}, 1000);
-
-
 	});
 
 
