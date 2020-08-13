@@ -26,9 +26,14 @@ h1 {
 	text-shadow: 2px 2px 1px black;
 }
 
-button img {
+.choice img {
 	width: 100px;
 	height: 100px;
+}
+
+.selection img {
+	width: 60px;
+	height: 60px;
 }
 
 button {
@@ -75,11 +80,27 @@ button#reset:active {
 
 .score {
 	display: flex;
-	justify-content: space-around;
-	width: 80%;
+	justify-content: center;
 	color: white;
 	font-size: 1.5em;
 }
+
+.score div {
+	padding: 0 25px;
+}
+
+.choice {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+}
+
+.choice div {
+	width: 100px;
+	height: 100px;
+}
+
+
 
 
 .selection {
