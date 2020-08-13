@@ -5,43 +5,36 @@ $(function () {
 			value: 'paper',
 			imgLink: 'https://cdn.onlinewebfonts.com/svg/img_431666.png',
 			win1: 'rock',
-			win2: 'spock',
-			lose1: 'scissors',
-			lose2: 'lizard'
+			win2: 'spock'
 		},
 		{
 			value: 'rock',
 			imgLink: 'https://cdn.onlinewebfonts.com/svg/img_57211.png',
 			win1: 'lizard',
-			win2: 'scissors',
-			lose1: 'paper',
-			lose2: 'spock'
+			win2: 'scissors'
 		},
 		{
 			value: 'scissors',
 			imgLink: 'https://cdn.onlinewebfonts.com/svg/img_431665.png',
 			win1: 'paper',
-			win2: 'lizard',
-			lose1: 'rock',
-			lose2: 'spock'
+			win2: 'lizard'
 		},
 		{
 			value: 'lizard',
 			imgLink: 'https://cdn.onlinewebfonts.com/svg/img_2998.png',
 			win1: 'spock',
-			win2: 'paper',
-			lose1: 'rock',
-			lose2: 'scissors'
+			win2: 'paper'
 		},
 		{
 			value: 'spock',
 			imgLink: 'https://cdn.onlinewebfonts.com/svg/img_2999.png',
 			win1: 'scissors',
-			win2: 'rock',
-			lose1: 'paper',
-			lose2: 'lizard'
+			win2: 'rock'
 		}
 	]
+
+	let userCount = 0;
+	let cpuCount = 0;
 
 
 	/* inizializzazione */
@@ -49,30 +42,42 @@ $(function () {
 	$('.selection, .score').hide();
 
 
+
 	/* tasti play e reset */
 
 	$('#play, #reset').click(function () {
 		$('.selection, .score').toggle();
 		$('#play, #reset').toggle();
+		$('.video').show();
 	})
 
 	$('#play').click(() => {
 		$('h1').text('Fai la tua scelta');
+		$('.video').hide();
+		$('.choice').removeClass('absolutePos');
+
 	})
 
 	$('#reset').click(() => {
 		$('.score span').text(0);
 		$('h1').text('Carta Sasso Forbici Lizard e Spock');
 		$('.user-choice img, .cpu-choice img').fadeOut(0);
+		$('.choice').addClass('absolutePos');
+
+
 	})
 
 
 	/* choice */
 
+
+
 	$('.user-choice img, .cpu-choice img').fadeOut(0);
 
 
 	$('.selection button img').click(function () {
+
+
 		$('.cpu-choice img').fadeOut(0);
 
 		let userImg = $(this).attr('src');
@@ -86,15 +91,18 @@ $(function () {
 			let cpuChoice = trovaPerAttr(arraySelezioni, "imgLink", cpuImg);
 
 			if (userChoice.value === cpuChoice.value) {
-				/* pareggio */
 				console.log('pareggio');
 			} else if (userChoice.win1 === cpuChoice.value || userChoice.win2 === cpuChoice.value) {
 				console.log('hai vinto');
+				$('.player-score').text(++userCount);
 			} else {
 				console.log('hai perso');
+				$('.cpu-score').text(++cpuCount);
 			}
 
 		}, 1000);
+
+
 	});
 
 

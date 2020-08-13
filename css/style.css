@@ -21,9 +21,14 @@
 }
 
 h1 {
+
 	color: white;
 	font-size: 3em;
 	text-shadow: 2px 2px 1px black;
+}
+
+h2 {
+	text-shadow: 1px 1px 1px black;
 }
 
 .choice img {
@@ -35,6 +40,8 @@ h1 {
 	width: 60px;
 	height: 60px;
 }
+
+
 
 button {
 	background-color: rgb(96, 124, 161);
@@ -122,4 +129,24 @@ button#reset:active {
 .selection button:active {
 	transform: scale(.9);
 	transition: .1s;
+}
+
+/* video */
+.video {
+	color: white;
+	font-size: 1.2em;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.video iframe {
+	margin-top: 10px;
+	border: 5px solid white;
+	border-radius: 10px;
+}
+
+/* choice */
+
+.absolutePos {
+	position: absolute;
 }
