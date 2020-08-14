@@ -45,14 +45,10 @@ $(function () {
 	let userCount = 0;
 	let cpuCount = 0;
 
-
 	/* inizializzazione */
 
 	$('.selection, .score').hide();
 	$('.resultText').hide();
-
-
-
 
 	/* tasti play e reset */
 
@@ -65,9 +61,6 @@ $(function () {
 	$('#play').click(() => {
 		$('h1').text('Fai la tua scelta');
 		$('.video').hide();
-
-		/* $('.choice').removeClass('absolutePos'); */
-
 	})
 
 	$('#reset').click(() => {
@@ -77,23 +70,15 @@ $(function () {
 
 		userCount = 0;
 		cpuCount = 0;
-
-		/* $('.choice').addClass('absolutePos'); */
-
-
 	})
-
 
 	/* choice */
 	$('.user-choice img, .cpu-choice img').fadeOut(0);
-
 
 	$('.selection button img').click(function () {
 
 		/* reset del resultText */
 		$('.resultTextTop, .resultTextBottom').text("");
-
-
 
 		$('.cpu-choice img').fadeOut(0);
 
@@ -109,7 +94,6 @@ $(function () {
 
 			if (userChoice.value === cpuChoice.value) {
 				$('.resultTextTop').text("È un pareggio");
-
 
 			} else if (userChoice.win1[0] === cpuChoice.value) {
 
@@ -130,31 +114,12 @@ $(function () {
 				$('.cpu-score').text(++cpuCount);
 
 			} else {
-
-
 				$('.resultTextTop').text(("Hai perso!").toUpperCase());
 				$('.resultTextBottom').text(userChoice.lose2[1]);
 				$('.cpu-score').text(++cpuCount);
-
 			}
-
-
-
-
-
-			/* (userChoice.win1 === cpuChoice.value || userChoice.win2 === cpuChoice.value) {
-				console.log('hai vinto');
-				$('.player-score').text(++userCount);
-			} else {
-				console.log('hai perso');
-				$('.cpu-score').text(++cpuCount);
-			} */
-
 		}, 1000);
 	});
-
-
-
 
 
 	/* random function */
@@ -163,11 +128,10 @@ $(function () {
 		return Math.floor(Math.random() * (max - min + 1) + min);
 	}
 
-
+	/* trova elemento per attributo in un array di oggetti */
+	
 	function trovaPerAttr(arr, attr, val) {
 		const trovato = arr.find(elemento => elemento[attr].toLowerCase() == val.toLowerCase())
 		return trovato
 	}
-
-
 });
