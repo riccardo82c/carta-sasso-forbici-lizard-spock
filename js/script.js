@@ -1,39 +1,5 @@
 $(function () {
 
-	// definisco un array di obj
-	/* const arraySelezioni = [{
-			value: 'paper',
-			imgLink: 'https://cdn.onlinewebfonts.com/svg/img_431666.png',
-			win1: 'rock',
-			win2: 'spock'
-		},
-		{
-			value: 'rock',
-			imgLink: 'https://cdn.onlinewebfonts.com/svg/img_57211.png',
-			win1: 'lizard',
-			win2: 'scissors'
-		},
-		{
-			value: 'scissors',
-			imgLink: 'https://cdn.onlinewebfonts.com/svg/img_431665.png',
-			win1: 'paper',
-			win2: 'lizard'
-		},
-		{
-			value: 'lizard',
-			imgLink: 'https://cdn.onlinewebfonts.com/svg/img_2998.png',
-			win1: 'spock',
-			win2: 'paper'
-		},
-		{
-			value: 'spock',
-			imgLink: 'https://cdn.onlinewebfonts.com/svg/img_2999.png',
-			win1: 'scissors',
-			win2: 'rock'
-		}
-	] */
-
-
 	const arraySelezioni = [{
 			value: 'paper',
 			imgLink: 'https://cdn.onlinewebfonts.com/svg/img_431666.png',
