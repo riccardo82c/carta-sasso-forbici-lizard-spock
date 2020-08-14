@@ -1,4 +1,4 @@
-<h1>Carta sasso forbici lizard e spock</h1>
+<h1>Carta Forbici Sasso Lizard Spock</h1>
 
 <p>Proviamo a ricreare il famosissimo gioco in questa versione</p>
 
@@ -6,7 +6,7 @@
 
 <br>
 <br>
-<h2>Le regole qui sotto</h2>
+<h2>Here are the rules</h2>
 
 <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwordpress.morningside.edu%2Fcdl001%2Ffiles%2F2010%2F09%2FRockPaperScissorsLizardSpock.jpg&f=1&nofb=1"></img>
 
