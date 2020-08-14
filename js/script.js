@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
 
 	const arraySelezioni = [{
 			value: 'paper',
@@ -40,7 +40,7 @@ $(function () {
 			lose1: ['paper', 'La CARTA invalida SPOCK'],
 			lose2: ['lizard', 'LIZARD avvelena SPOCK']
 		}
-	]
+	];
 
 	let userCount = 0;
 	let cpuCount = 0;
@@ -52,40 +52,39 @@ $(function () {
 
 	/* tasti play e reset */
 
-	$('#play, #reset').click(function () {
+	$('#play, #reset').click(function() {
 		$('.selection, .score, .resultText').toggle();
 		$('#play, #reset').toggle();
 		$('.video').show();
-	})
+	});
 
 	$('#play').click(() => {
 		$('h1').text('Fai la tua scelta');
-		$('.video').hide();
-	})
+		$('.video').remove();
+	});
 
 	$('#reset').click(() => {
 		$('.score span').text(0);
 		$('h1').text('Carta Forbici Sasso Lizard e Spock');
 		$('.user-choice img, .cpu-choice img').fadeOut(0);
-
 		userCount = 0;
 		cpuCount = 0;
-	})
+	});
 
 	/* choice */
 	$('.user-choice img, .cpu-choice img').fadeOut(0);
 
-	$('.selection button img').click(function () {
+	$('.selection button img').click(function() {
 
 		/* reset del resultText */
-		$('.resultTextTop, .resultTextBottom').text("");
+		$('.resultTextTop, .resultTextBottom').text('');
 
 		$('.cpu-choice img').fadeOut(0);
 
 		let userImg = $(this).attr('src');
 		$('.user-choice img').attr('src', userImg).fadeIn();
 
-		setTimeout(function () {
+		setTimeout(function() {
 			let cpuImg = arraySelezioni[numRandom(0, 4)].imgLink;
 			$('.cpu-choice img').attr('src', cpuImg).fadeIn();
 
@@ -122,16 +121,16 @@ $(function () {
 	});
 
 
-	/* random function */
+	// FUNCTIONS //	
 
+	/* Random function */
 	function numRandom(min, max) {
-		return Math.floor(Math.random() * (max - min + 1) + min);
+		return Math.floor(Math.random()*(max - min + 1) + min);
 	}
 
-	/* trova elemento per attributo in un array di oggetti */
-	
+	/* Trova un elemento per attributo in un array di oggetti */	
 	function trovaPerAttr(arr, attr, val) {
-		const trovato = arr.find(elemento => elemento[attr].toLowerCase() == val.toLowerCase())
-		return trovato
+		const trovato = arr.find(elemento => elemento[attr].toLowerCase() == val.toLowerCase());
+		return trovato;
 	}
 });

@@ -1,3 +1,4 @@
+/* GENERAL */
 * {
 	margin: 0;
 	padding: 0;
@@ -12,7 +13,6 @@
 	display: table;
 }
 
-
 .container {
 	height: 100vh;
 	background-color: #4b89ac;
@@ -22,46 +22,35 @@
 	align-items: center;
 }
 
+/* TYPO */
 h1 {
-
-
 	width: 100%;
 	text-align: center;
 	background-color: #e4fcf9;
 	color: #446491;
 	font-size: 3.5em;
-
 }
 
 h2 {
 	text-shadow: 1px 1px 2px #446491;
 }
 
-.choice img {
-	width: 100px;
-	height: 100px;
-	filter: invert(1);
-}
-
-.selection div {
-	color: white;
-}
-
-.selection img {
-	width: 70px;
-	height: 70px;
-	filter: invert(1);
-}
-
-
-
+/* BUTTONS */
 button {
 	background-color: #4b89ac;
 	border: none;
 	cursor: pointer;
-
 }
 
+button#play,
+button#reset {
+	background-color: #e4fcf9;
+	color: #093c59;
+	border-radius: 10px;
+	box-shadow: inset -2px -2px 6px 1px #7a8ba3,
+		1px 3px 3px 1px #446491;
+	transition: letter-spacing .4s ease;
+}
 
 button#play {
 	padding: 1.2em 2.8em;
@@ -74,39 +63,37 @@ button#reset {
 	font-size: 1em;
 }
 
-
-button#play,
-button#reset {
-	background-color: #e4fcf9;
-	color: #093c59;
-
-	border-radius: 10px;
-	box-shadow: inset -2px -2px 6px 1px #7a8ba3,
-		1px 3px 3px 1px #446491;
-	transition: letter-spacing .4s ease;
-
-
-
-}
-
 button#play:active,
 button#reset:active {
-
 	background-color: rgb(135, 154, 189);
 	color: #e4fcf9;
 	box-shadow: inset 3px 3px 4px 1px #446491,
 		1px 2px 2px 1px #446491;
-
 }
 
 button#play:hover,
 button#reset:hover {
 	letter-spacing: .3em;
-
 }
 
+.selection button {
+	opacity: .4;
+	text-align: center;
+	transition: .2s ease;
+}
 
+.selection button:hover {
+	opacity: 1;
+	letter-spacing: .2em;
+	transform: scale(1.1);	
+}
 
+.selection button:active {
+	transform: scale(1);
+}
+/* *** */
+
+/* SCORE */
 .score {
 	display: flex;
 	justify-content: center;
@@ -118,6 +105,7 @@ button#reset:hover {
 	padding: 0 70px;
 }
 
+/* CHOICE */
 .choice {
 	display: flex;
 	justify-content: space-evenly;
@@ -129,47 +117,40 @@ button#reset:hover {
 	height: 100px;
 }
 
+.choice img {
+	width: 100px;
+	height: 100px;
+	filter: invert(1);
+}
+
 div.resultText {
 	height: 100px;
 	width: 750px;
-
 	font-size: 2.2em;
 	text-align: center;
-
-
 	color: #e4fcf9;
-
-
 }
+/* *** */
 
-
+/* SELECTION */
 .selection {
 	display: flex;
 	width: 100%;
 	justify-content: space-evenly;
 }
 
-.selection button {
-	opacity: .4;
-
-	text-align: center;
-	transition: .2s ease;
+.selection img {
+	width: 70px;
+	height: 70px;
+	filter: invert(1);
 }
 
-.selection button:hover {
-	opacity: 1;
-	letter-spacing: .2em;
-	transform: scale(1.1);
-
-	/* transition: .2s ease-in; */
+.selection div {
+	color: white;
 }
+/* *** */
 
-.selection button:active {
-	transform: scale(1);
-
-}
-
-/* video */
+/* VIDEO */
 .video {
 	color: #e4fcf9;
 	margin-top: 10px;
@@ -182,5 +163,3 @@ div.resultText {
 	border-radius: 10px;
 	box-shadow: 1px 2px 2px 1px #446491;
 }
-
-/* choice */
