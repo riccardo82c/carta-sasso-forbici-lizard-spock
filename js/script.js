@@ -52,7 +52,7 @@ $(function() {
 
 	/* tasti play e reset */
 
-	$('#play, #reset').click(function() {
+	$('#play, #reset').click(() => {
 		$('.selection, .score, .resultText, #play, #reset').toggle();
 	});
 
@@ -67,6 +67,7 @@ $(function() {
 		$('.user-choice img, .cpu-choice img').fadeOut(0);
 		$('.resultTextTop, .resultTextBottom').text('');
 		if (userCount == maxScore || cpuCount == maxScore) {
+			$('*').hide();
 			location.reload();
 		}
 	});
@@ -95,27 +96,22 @@ $(function() {
 				$('.resultTextTop').text('È un pareggio');
 
 			} else if (userChoice['win1'][0] === cpuChoice.value) {
-
-				checkWin('Hai vinto!','win1',userChoice);				
+				checkWin('Hai vinto!','win1',userChoice);
 
 			} else if (userChoice['win2'][0] === cpuChoice.value) {
-
 				checkWin('Hai vinto!','win2',userChoice);
 
 			} else if (userChoice.lose1[0] === cpuChoice.value) {
-
 				checkWin('Hai perso!','lose1',userChoice);
-
-			} else {
-
-				checkWin('Hai perso!','lose2',userChoice);
 				
+			} else {
+				checkWin('Hai perso!','lose2',userChoice);
 			}
 
 			if (userCount == maxScore) {				
-				endGame('Hai vinto!');
+				endGame('Hai vinto!','sad');
 			} else if (cpuCount == maxScore) {
-				endGame('Hai perso!');
+				endGame('Hai perso!','happy');
 			}
 
 		}, 1000);
@@ -149,9 +145,14 @@ $(function() {
 	}
 
 	/* Endgame - Win or Lose */
-	function endGame(testo) {
+	function endGame(testo,img) {
 		$('h1').text((testo).toUpperCase());
 		$('.container *:not(h1, #reset)').hide();
+		if (img == 'sad') {
+			$('#sad-sheldon').fadeIn();
+		} else if (img == 'happy') {
+			$('#happy-sheldon').fadeIn();
+		}
 		$('#reset').text('Play again!');
 	}
 });
