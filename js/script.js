@@ -44,22 +44,20 @@ $(function() {
 
 	let userCount = 0;
 	let cpuCount = 0;
+	let maxScore = 10;
 
 	/* inizializzazione */
 
-	$('.selection, .score').hide();
-	$('.resultText').hide();
+	$('.selection, .score, .resultText').hide();
 
 	/* tasti play e reset */
 
 	$('#play, #reset').click(function() {
-		$('.selection, .score, .resultText').toggle();
-		$('#play, #reset').toggle();
-		$('.video').show();
+		$('.selection, .score, .resultText, #play, #reset').toggle();
 	});
 
 	$('#play').click(() => {
-		$('h1').text('Fai la tua scelta');
+		$('h1').text(`Fai la tua scelta! Vince chi totalizza ${maxScore} punti`);
 		$('.video').remove();
 	});
 
@@ -67,8 +65,10 @@ $(function() {
 		$('.score span').text(0);
 		$('h1').text('Carta Forbici Sasso Lizard e Spock');
 		$('.user-choice img, .cpu-choice img').fadeOut(0);
-		userCount = 0;
-		cpuCount = 0;
+		$('.resultTextTop, .resultTextBottom').text('');
+		if (userCount == maxScore || cpuCount == maxScore) {
+			location.reload();
+		}
 	});
 
 	/* choice */
@@ -79,44 +79,45 @@ $(function() {
 		/* reset del resultText */
 		$('.resultTextTop, .resultTextBottom').text('');
 
-		$('.cpu-choice img').fadeOut(0);
+		$('.cpu-choice img, .overlay img').fadeOut(0);
 
 		let userImg = $(this).attr('src');
-		$('.user-choice img').attr('src', userImg).fadeIn();
+		$('.user-choice > img').attr('src', userImg).fadeIn();
 
 		setTimeout(function() {
 			let cpuImg = arraySelezioni[numRandom(0, 4)].imgLink;
-			$('.cpu-choice img').attr('src', cpuImg).fadeIn();
+			$('.cpu-choice > img').attr('src', cpuImg).fadeIn();
 
-			let userChoice = trovaPerAttr(arraySelezioni, "imgLink", userImg);
-			let cpuChoice = trovaPerAttr(arraySelezioni, "imgLink", cpuImg);
+			let userChoice = trovaPerAttr(arraySelezioni, 'imgLink', userImg);
+			let cpuChoice = trovaPerAttr(arraySelezioni, 'imgLink', cpuImg);
 
 			if (userChoice.value === cpuChoice.value) {
-				$('.resultTextTop').text("È un pareggio");
+				$('.resultTextTop').text('È un pareggio');
 
-			} else if (userChoice.win1[0] === cpuChoice.value) {
+			} else if (userChoice['win1'][0] === cpuChoice.value) {
 
-				$('.resultTextTop').text(("Hai vinto!").toUpperCase());
-				$('.resultTextBottom').text(userChoice.win1[1]);
-				$('.player-score').text(++userCount);
+				checkWin('Hai vinto!','win1',userChoice);				
 
-			} else if (userChoice.win2[0] === cpuChoice.value) {
+			} else if (userChoice['win2'][0] === cpuChoice.value) {
 
-				$('.resultTextTop').text(("Hai vinto!").toUpperCase());
-				$('.resultTextBottom').text(userChoice.win2[1]);
-				$('.player-score').text(++userCount);
+				checkWin('Hai vinto!','win2',userChoice);
 
 			} else if (userChoice.lose1[0] === cpuChoice.value) {
 
-				$('.resultTextTop').text(("Hai perso!").toUpperCase());
-				$('.resultTextBottom').text(userChoice.lose1[1]);
-				$('.cpu-score').text(++cpuCount);
+				checkWin('Hai perso!','lose1',userChoice);
 
 			} else {
-				$('.resultTextTop').text(("Hai perso!").toUpperCase());
-				$('.resultTextBottom').text(userChoice.lose2[1]);
-				$('.cpu-score').text(++cpuCount);
+
+				checkWin('Hai perso!','lose2',userChoice);
+				
 			}
+
+			if (userCount == maxScore) {				
+				endGame('Hai vinto!');
+			} else if (cpuCount == maxScore) {
+				endGame('Hai perso!');
+			}
+
 		}, 1000);
 	});
 
@@ -132,5 +133,25 @@ $(function() {
 	function trovaPerAttr(arr, attr, val) {
 		const trovato = arr.find(elemento => elemento[attr].toLowerCase() == val.toLowerCase());
 		return trovato;
+	}
+
+	/* Controllo vittoria o sconfitta */
+	function checkWin(str,attr,choice) {
+		$('.resultTextTop').text((str).toUpperCase());		
+		$('.resultTextBottom').text(choice[attr][1]);
+		if (attr == 'win1' || attr == 'win2') {
+			$('.user-score').text(++userCount);
+			$('.cpu-choice .overlay img').show();
+		} else {
+			$('.cpu-score').text(++cpuCount);
+			$('.user-choice .overlay img').show();
+		}
+	}
+
+	/* Endgame - Win or Lose */
+	function endGame(testo) {
+		$('h1').text((testo).toUpperCase());
+		$('.container *:not(h1, #reset)').hide();
+		$('#reset').text('Play again!');
 	}
 });
