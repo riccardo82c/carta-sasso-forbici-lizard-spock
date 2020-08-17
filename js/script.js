@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
 	const arraySelezioni = [{
 			value: 'paper',
@@ -44,16 +44,16 @@ $(function() {
 
 	let userCount = 0;
 	let cpuCount = 0;
-	let maxScore = 10;
+	let maxScore = 2;
 
 	/* inizializzazione */
 
-	$('.selection, .score, .resultText').hide();
+	$('.score, .choice, .selection').hide();
 
 	/* tasti play e reset */
 
 	$('#play, #reset').click(() => {
-		$('.selection, .score, .resultText, #play, #reset').toggle();
+		$('.selection, .score, .choice, #play, #reset').toggle();
 	});
 
 	$('#play').click(() => {
@@ -62,20 +62,23 @@ $(function() {
 	});
 
 	$('#reset').click(() => {
-		$('.score span').text(0);
+		$('*').hide();
+		location.reload();
+
+		/* $('.score span').text(0);
 		$('h1').text('Carta Forbici Sasso Lizard e Spock');
 		$('.user-choice img, .cpu-choice img').fadeOut(0);
 		$('.resultTextTop, .resultTextBottom').text('');
 		if (userCount == maxScore || cpuCount == maxScore) {
 			$('*').hide();
 			location.reload();
-		}
+		} */
 	});
 
 	/* choice */
 	$('.user-choice img, .cpu-choice img').fadeOut(0);
 
-	$('.selection button img').click(function() {
+	$('.selection button img').click(function () {
 
 		/* reset del resultText */
 		$('.resultTextTop, .resultTextBottom').text('');
@@ -83,10 +86,12 @@ $(function() {
 		$('.cpu-choice img, .overlay img').fadeOut(0);
 
 		let userImg = $(this).attr('src');
+		$('.choice').fadeIn();
 		$('.user-choice > img').attr('src', userImg).fadeIn();
 
-		setTimeout(function() {
+		setTimeout(function () {
 			let cpuImg = arraySelezioni[numRandom(0, 4)].imgLink;
+			$('.choice').fadeIn();
 			$('.cpu-choice > img').attr('src', cpuImg).fadeIn();
 
 			let userChoice = trovaPerAttr(arraySelezioni, 'imgLink', userImg);
@@ -96,22 +101,22 @@ $(function() {
 				$('.resultTextTop').text('È un pareggio');
 
 			} else if (userChoice['win1'][0] === cpuChoice.value) {
-				checkWin('Hai vinto!','win1',userChoice);
+				checkWin('Hai vinto!', 'win1', userChoice);
 
 			} else if (userChoice['win2'][0] === cpuChoice.value) {
-				checkWin('Hai vinto!','win2',userChoice);
+				checkWin('Hai vinto!', 'win2', userChoice);
 
 			} else if (userChoice.lose1[0] === cpuChoice.value) {
-				checkWin('Hai perso!','lose1',userChoice);
-				
+				checkWin('Hai perso!', 'lose1', userChoice);
+
 			} else {
-				checkWin('Hai perso!','lose2',userChoice);
+				checkWin('Hai perso!', 'lose2', userChoice);
 			}
 
-			if (userCount == maxScore) {				
-				endGame('Hai vinto!','sad');
+			if (userCount == maxScore) {
+				endGame('Hai vinto!', 'sad');
 			} else if (cpuCount == maxScore) {
-				endGame('Hai perso!','happy');
+				endGame('Hai perso!', 'happy');
 			}
 
 		}, 1000);
@@ -122,32 +127,33 @@ $(function() {
 
 	/* Random function */
 	function numRandom(min, max) {
-		return Math.floor(Math.random()*(max - min + 1) + min);
+		return Math.floor(Math.random() * (max - min + 1) + min);
 	}
 
-	/* Trova un elemento per attributo in un array di oggetti */	
+	/* Trova un elemento per attributo in un array di oggetti */
 	function trovaPerAttr(arr, attr, val) {
 		const trovato = arr.find(elemento => elemento[attr].toLowerCase() == val.toLowerCase());
 		return trovato;
 	}
 
 	/* Controllo vittoria o sconfitta */
-	function checkWin(str,attr,choice) {
-		$('.resultTextTop').text((str).toUpperCase());		
+	function checkWin(str, attr, choice) {
+		$('.resultTextTop').text((str).toUpperCase());
 		$('.resultTextBottom').text(choice[attr][1]);
 		if (attr == 'win1' || attr == 'win2') {
 			$('.user-score').text(++userCount);
-			$('.cpu-choice .overlay img').show();
+			$('.cpu-choice .overlay img').fadeIn();
 		} else {
 			$('.cpu-score').text(++cpuCount);
-			$('.user-choice .overlay img').show();
+			$('.user-choice .overlay img').fadeIn();
 		}
 	}
 
 	/* Endgame - Win or Lose */
-	function endGame(testo,img) {
+	function endGame(testo, img) {
 		$('h1').text((testo).toUpperCase());
-		$('.container *:not(h1, #reset)').hide();
+		$('.selection').hide();
+
 		if (img == 'sad') {
 			$('#sad-sheldon').fadeIn();
 		} else if (img == 'happy') {
