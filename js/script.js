@@ -44,7 +44,7 @@ $(function () {
 
 	let userCount = 0;
 	let cpuCount = 0;
-	let maxScore = 2;
+	let maxScore = 5;
 
 	/* inizializzazione */
 
